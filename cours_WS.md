@@ -27,7 +27,7 @@ import javax.jws.soap.SOAPBinding;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public interface HelloWorld {
+public interface fr.paris10.miage.procs.exercice1.HelloWorld {
     @WebMethod String bonjour(String name);
 }
 ```
@@ -45,8 +45,8 @@ package hello;
 
 import javax.jws.WebService;
 
-@WebService(endpointInterface = "fr.paris10.miage.procs.exercice1.HelloWorld")
-public class HelloWorldImpl implements HelloWorld {
+@WebService(endpointInterface = "fr.paris10.miage.procs.exercice1.fr.paris10.miage.procs.exercice1.HelloWorld")
+public class HelloWorldImpl implements fr.paris10.miage.procs.exercice1.HelloWorld {
     @Override
     public String bonjour(String name) {
         return "Bonjour "+name+"\n";
@@ -83,13 +83,13 @@ Si tout va bien vous récupérez ceci :
 <message name="bonjourResponse">
 <part name="return" type="xsd:string"></part>
 </message>
-<portType name="HelloWorld">
+<portType name="fr.paris10.miage.procs.exercice1.HelloWorld">
 <operation name="bonjour">
-<input wsam:Action="http://exercice1.procs.miage.paris10.fr/HelloWorld/bonjourRequest" message="tns:bonjour"></input>
-<output wsam:Action="http://exercice1.procs.miage.paris10.fr/HelloWorld/bonjourResponse" message="tns:bonjourResponse"></output>
+<input wsam:Action="http://exercice1.procs.miage.paris10.fr/fr.paris10.miage.procs.exercice1.HelloWorld/bonjourRequest" message="tns:bonjour"></input>
+<output wsam:Action="http://exercice1.procs.miage.paris10.fr/fr.paris10.miage.procs.exercice1.HelloWorld/bonjourResponse" message="tns:bonjourResponse"></output>
 </operation>
 </portType>
-<binding name="HelloWorldImplPortBinding" type="tns:HelloWorld">
+<binding name="HelloWorldImplPortBinding" type="tns:fr.paris10.miage.procs.exercice1.HelloWorld">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"></soap:binding>
 <operation name="bonjour">
 <soap:operation soapAction=""></soap:operation>
@@ -115,12 +115,12 @@ Il s'agit d'un fichier WSDL (Web Service Description Language), dans sa version 
 
 ### 3. création d'un client simple
 
-La création d'un client est simplifiée grâce aux informations contenues dans le fichier WSDL que nous avons vu ci-dessus. Traditionnellement on peut soit utiliser une copie locale (au niveau du code client) de ce fichier, soit l'accèder en ligne (si le service Web tourne, il est possible d'ajouter `?wsdl` à son URI pour obtenir le fichier WSDL le décrivant). Côté classes Java, ici le client a directement accès à la description du service (l'interface `hello.HelloWorld`). Nous verrons dans la suite comment lever cette hypothèse.
+La création d'un client est simplifiée grâce aux informations contenues dans le fichier WSDL que nous avons vu ci-dessus. Traditionnellement on peut soit utiliser une copie locale (au niveau du code client) de ce fichier, soit l'accèder en ligne (si le service Web tourne, il est possible d'ajouter `?wsdl` à son URI pour obtenir le fichier WSDL le décrivant). Côté classes Java, ici le client a directement accès à la description du service (l'interface `hello.fr.paris10.miage.procs.exercice1.HelloWorld`). Nous verrons dans la suite comment lever cette hypothèse.
 
 ```java
 package helloclient;
 
-import hello.HelloWorld;
+import hello.fr.paris10.miage.procs.exercice1.HelloWorld;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
@@ -132,7 +132,7 @@ public class HelloWorldClient {
         URL url = new URL("http://localhost:9999/ws/bonjour?wsdl");
         QName qname = new QName("http://hello/", "HelloWorldImplService");
         Service service = Service.create(url, qname);
-        HelloWorld hello = service.getPort(HelloWorld.class);
+        fr.paris10.miage.procs.exercice1.HelloWorld hello = service.getPort(fr.paris10.miage.procs.exercice1.HelloWorld.class);
         System.out.println(hello.bonjour("Bob"));
     }
 }
@@ -762,7 +762,7 @@ Passons au bottom-up. C'est encore plus simple.<br/>
 Il suffit d'avoir une classe métier puis d'utiliser le menu contextuel pour en faire un service Web. 
 
 1. crééz un Dynamic Web Project
-2. crééz une classe HelloWorld qui réalise l'opération vue en début du cours
+2. crééz une classe fr.paris10.miage.procs.exercice1.HelloWorld qui réalise l'opération vue en début du cours
 3. utilisez l'IDE pour faire un service Web au dessus de cette classe
 4. vérifiez que tout va bien en examinant le WSDL en ligne et en écrivant un client.
 
