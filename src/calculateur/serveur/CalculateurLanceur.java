@@ -8,6 +8,6 @@ import javax.xml.ws.Endpoint;
  */
 public class CalculateurLanceur {
     public static void main(String[] args) {
-        Endpoint.publish("http://localhost:9999/procs/calculatrice?", new CalculateurImp());
+        Endpoint.publish("http://localhost:9999/procs/calculatrice", new CalculateurImp());
     }
 }
