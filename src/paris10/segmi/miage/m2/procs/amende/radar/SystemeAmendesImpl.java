@@ -7,8 +7,8 @@ import javax.jws.WebService;
  */
 @WebService(endpointInterface = "paris10.segmi.miage.m2.procs.amende.radar")
 public class SystemeAmendesImpl {
-    @Override
-    public void enregistrer();
+    /*@Override
+    public void enregistrer(Voiture car);
 
     @Override
     public int signaler();
@@ -17,5 +17,5 @@ public class SystemeAmendesImpl {
     public String lister();
 
     @Override
-    public int payer();
+    public int payer();*/
 }
